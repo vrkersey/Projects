@@ -44,8 +44,20 @@ namespace PeopleSearchApp
 
         private void textTyped(object sender, RoutedEventArgs e)
         {
-            
-            
+            searchTxtBox.Items.Clear();
+            searchTxtBox.IsDropDownOpen = true;
+            List<User> list = new List<User>(database.prefix(searchTxtBox.Text));
+            if (list.Count == 1)
+                searchTxtBox.Text = list.First<User>().Name;
+            if (searchTxtBox.Text != null && list.Count!=0 && searchTxtBox.Text != "")
+            {
+                
+                foreach (User u in list)
+                    searchTxtBox.Items.Add(u.Name);
+            }
+            else if (searchTxtBox.Text == "")
+                foreach (User u in database.allUsers())
+                    searchTxtBox.Items.Add(u.Name);
         }
 
         private void Switch2Search(Object sender, RoutedEventArgs e)

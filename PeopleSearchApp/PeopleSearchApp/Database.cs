@@ -8,7 +8,7 @@ namespace PeopleSearchApp
 {
     public class Database
     {
-        private List<User> fullName;
+        private List<User> fullName; //Used when returning all users and searching by a full name
         private List<User> firstName;
         private List<User> lastName;
 
@@ -54,11 +54,28 @@ namespace PeopleSearchApp
             return null;
         }
 
-        public IEnumerable<User> prefix(int r)
+        public IEnumerable<User> prefix(string prefix)
         {
+            List<User> returnList = new List<User>();
+            if (prefix != "")
+            {
+                foreach (User u in firstName)
+                {
+                    int minLength = prefix.Length > u.FirstName.Length ? u.FirstName.Length : prefix.Length;
+                    string name = u.FirstName.Substring(0, minLength);
+                    if (name.ToUpper() == prefix.ToUpper())
+                        returnList.Add(u);
+                }
 
-
-            return null;
+                foreach (User u in lastName)
+                {
+                    int minLength = prefix.Length > u.LastName.Length ? u.LastName.Length : prefix.Length;
+                    string name = u.LastName.Substring(0, minLength);
+                    if (name.ToUpper() == prefix.ToUpper())
+                        returnList.Add(u);
+                }
+            }
+            return returnList;
         }
 
         public void save()
