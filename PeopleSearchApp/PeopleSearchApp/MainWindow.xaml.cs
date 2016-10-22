@@ -21,16 +21,22 @@ namespace PeopleSearchApp
     /// </summary>
     public partial class MainWindow : Window
     {
+        private Database database;
+        private User searchedUser;
+
         public MainWindow()
         {
+            database = new Database();
+
             InitializeComponent();
 
             addMenuItem.Click += new RoutedEventHandler(Switch2User);
             searchMenuItem.Click += new RoutedEventHandler(Switch2Search);
             userImageBtn.Click += new RoutedEventHandler(importImage);
+            
         }
 
-        public void Switch2Search(Object sender, RoutedEventArgs e)
+        private void Switch2Search(Object sender, RoutedEventArgs e)
         {
             addMenuItem.IsEnabled = true;
             searchMenuItem.IsEnabled = false;
@@ -38,7 +44,7 @@ namespace PeopleSearchApp
             userGrid.Visibility = Visibility.Hidden;
         }
 
-        public void Switch2User(Object sender, RoutedEventArgs e)
+        private void Switch2User(Object sender, RoutedEventArgs e)
         {
             addMenuItem.IsEnabled = false;
             searchMenuItem.IsEnabled = true;
@@ -49,20 +55,53 @@ namespace PeopleSearchApp
                 saveUser.Content = "Add";
         }
 
-        public void importImage(Object sender, RoutedEventArgs e)
+        private void importImage(Object sender, RoutedEventArgs e)
         {
             OpenFileDialog newDialog = new OpenFileDialog();
-            newDialog.Filter = "Image files (*.png;*.jpeg)|*.png;*.jpeg|All files(*.*)|*.*";
+            newDialog.Filter = "Image files (*.bmp, *.gif, *.ico, *.jpg, *.png, *.wdp, *.tiff)|*.bmp; *.gif; *.ico; *.jpg; *.png; *.wdp; *.tiff|All files(*.*)|*.*";
             if (newDialog.ShowDialog() == true)
             {
                 try
                 {
-
-                   // userPicture.Source = new Image(newDialog.FileName).Source;// newDialog.OpenFile();
-                }catch
-                {
-
+                    userPicture.Source = new BitmapImage(new Uri(newDialog.FileName));
                 }
+                catch
+                {
+                    MessageBox.Show("Invalid filetype");
+                }
+            }
+        }
+
+        private void searchBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Switch2User(sender, e);
+            User user = database.searchUser(searchTxtBox.Text);
+            fNameTxtBox.Text = user.FirstName;
+            lNameTxtBox.Text = user.LastName;
+            addressTxtBox.Text = user.Address;
+            ageTxtBox.Text = user.Age.ToString();
+            interestTxtBox.Text = user.Interests;
+            searchedUser = user;
+        }
+
+        private void saveUser_Click(object sender, RoutedEventArgs e)
+        {
+            int age;
+            if ((string)saveUser.Content == "Add")
+            {
+                User user = new User(fNameTxtBox.Text, lNameTxtBox.Text);
+                user.Address = addressTxtBox.Text;
+                user.Interests = interestTxtBox.Text;
+                if (int.TryParse(ageTxtBox.Text, out age))
+                    user.Age = age;
+                database.addUser(user);
+            }
+            else
+            {
+                searchedUser.Address = addressTxtBox.Text;
+                searchedUser.Interests = interestTxtBox.Text;
+                if (int.TryParse(ageTxtBox.Text, out age))
+                    searchedUser.Age = age;
             }
         }
     }
