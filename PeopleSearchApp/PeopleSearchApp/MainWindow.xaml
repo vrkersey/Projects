@@ -26,9 +26,10 @@
                     HorizontalAlignment="Right" Margin="0,25,20,0" 
                     VerticalAlignment="Top" Width="75" Click="searchBtn_Click"/>
 
-            <TextBox x:Name="searchTxtBox" Text="Doe, John"
-                     Height="20" Margin="70,25,100,0" TextWrapping="Wrap"  
-                     VerticalAlignment="Top" Width="auto"/>
+            <ComboBox x:Name="searchTxtBox" 
+                     Height="20" Margin="70,25,100,0"  
+                     VerticalAlignment="Top" Width="auto"
+                      IsEditable="True"  />
 
             <Label x:Name="label" Content="Name:" 
                    HorizontalAlignment="Left" Margin="20,21,0,0" 
@@ -48,7 +49,7 @@
             <!-- Photo area of grid -->
             <Grid Grid.Column="0" Grid.Row="0">
                 <Button x:Name="userImageBtn" Margin="15,0,0,0">
-                    <Image x:Name="userPicture" Margin="15" Source="Resources/thin-198_user_create_add_new-512.png" />
+                    <Image x:Name="userPicture" Margin="15" Source="Resources/default.png" />
                 </Button>
                
                 <Label Content="Click to Add Photo" 

@@ -20,6 +20,9 @@ namespace PeopleSearchApp
         {
             fName = firstName;
             lName = lastName;
+            address = "";
+            age = 0;
+            interests = "";
         }
 
         public string Name

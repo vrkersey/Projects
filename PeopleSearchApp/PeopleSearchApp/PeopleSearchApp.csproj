@@ -101,7 +101,7 @@
     <Resource Include="Resources\addPhoto.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\thin-198_user_create_add_new-512.png" />
+    <Resource Include="Resources\default.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

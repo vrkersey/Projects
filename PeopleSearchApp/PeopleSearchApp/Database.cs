@@ -8,34 +8,57 @@ namespace PeopleSearchApp
 {
     public class Database
     {
-        private HashSet<User> users;
+        private List<User> fullName;
+        private List<User> firstName;
+        private List<User> lastName;
 
         public Database()
         {
-            users = new HashSet<User>();
+            fullName = new List<User>();
+            firstName = new List<User>();
+            lastName = new List<User>();
         }
 
         public bool addUser(User user)
         {
             if (user == null) throw new ArgumentNullException();
 
-            return users.Add(user);
+            fullName.Add(user);
+            firstName.Add(user);
+            lastName.Add(user);
+            fullName.Sort(delegate (User u1, User u2) { return u1.Name.CompareTo(u2.Name); });
+            firstName.Sort(delegate (User u1, User u2) { return u1.FirstName.CompareTo(u2.FirstName); });
+            lastName.Sort(delegate (User u1, User u2) { return u1.LastName.CompareTo(u2.LastName); });
+            return true;
         }
 
         public IEnumerable<User> allUsers()
         {
-            return new HashSet<User>(users);
+            return new HashSet<User>(fullName);
         }
 
         public User searchUser(string name)
         {
-            User user = new User("Victor", "Kersey");
-            user.Address = "2046 N 650 W, Layton, UT";
-            user.Age = 28;
-            user.Interests = "Programming, other stuff";
-            return user;
+            foreach (User u in fullName)
+                if (u.Name == name)
+                    return u;
 
-            //return null;
+            foreach (User u in firstName)
+                if (u.FirstName == name)
+                    return u;
+
+            foreach (User u in lastName)
+                if (u.FirstName == name)
+                    return u;
+
+            return null;
+        }
+
+        public IEnumerable<User> prefix(int r)
+        {
+
+
+            return null;
         }
 
         public void save()
