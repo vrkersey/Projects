@@ -98,7 +98,7 @@ namespace PeopleSearchApp
                     MessageBox.Show("Invalid filetype");
                 }
             }
-            searchedUser.PicFilename = newDialog.FileName;
+            
         }
 
         private void searchBtn_Click(object sender, RoutedEventArgs e)
@@ -114,8 +114,7 @@ namespace PeopleSearchApp
                 addressTxtBox.Text = user.Address;
                 ageTxtBox.Text = user.Age.ToString();
                 interestTxtBox.Text = user.Interests;
-                if (user.PicFilename != null)
-                    userPicture.Source = new BitmapImage(new Uri(user.PicFilename));
+                userPicture.Source = new BitmapImage(new Uri(user.PicFilename));
                 searchedUser = user;
 
                 fNameTxtBox.IsEnabled = false;
@@ -135,6 +134,7 @@ namespace PeopleSearchApp
                 if (int.TryParse(ageTxtBox.Text, out age))
                     searchedUser.Age = age;
                 database.addUser(searchedUser);
+                searchedUser.PicFilename = userPicture.Source.ToString();
             }
             else
             {
@@ -143,9 +143,24 @@ namespace PeopleSearchApp
                 searchedUser.PicFilename = userPicture.Source.ToString();
                 if (int.TryParse(ageTxtBox.Text, out age))
                     searchedUser.Age = age;
+                searchedUser.PicFilename = userPicture.Source.ToString();
             }
+            clearTextBoxes();
+            Switch2Search(sender,e);
         }
 
+        private void clearTextBoxes()
+        {
+            addressTxtBox.Text = "";
+            ageTxtBox.Text = "";
+            fNameTxtBox.Text = "";
+            interestTxtBox.Text = "";
+            lNameTxtBox.Text = "";
+            searchTxtBox.Text = "";
+            searchTxtBox.IsDropDownOpen = false;
+            saveUser.Content = "Save";
+            userPicture.Source = new BitmapImage(new Uri("pack://application:,,,/PeopleSearchApp;component/Resources/default.png"));
+        }
         private void addSomeUsers()
         {
             User u1 = new User("John", "Doe");

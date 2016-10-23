@@ -23,6 +23,7 @@ namespace PeopleSearchApp
             address = "";
             age = 0;
             interests = "";
+            pictureFilePath = "pack://application:,,,/PeopleSearchApp;component/Resources/default.png";
         }
 
         public string Name
