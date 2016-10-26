@@ -7,35 +7,37 @@
         mc:Ignorable="d"
         Title="People Search" Height="350" Width="500">
 
-    <Grid Margin="0,0,2,0">
+    <Grid Margin="0,0,2,0" RenderTransformOrigin="0.502,0.542">
         <DockPanel>
             <Menu DockPanel.Dock="Top">
                 <MenuItem Header="_File">
-                    <MenuItem x:Name="openMenuItem" Header="_Open"/>
                     <MenuItem x:Name="addMenuItem" Header="_Add"/>
                     <MenuItem x:Name="searchMenuItem" Header="_Search" IsEnabled="False" />
-                    <MenuItem x:Name="saveMenuItem" Header="_Save"/>
                     <MenuItem x:Name="closeMenuItem" Header="_Close"/>
                 </MenuItem>
                 <MenuItem Header="_Help"/>
             </Menu>
         </DockPanel>
-        
-        <Grid x:Name="searchGrid">
+
+        <Grid x:Name="searchGrid" FocusManager.FocusedElement="{Binding ElementName=searchTxtBox}">
             <Button x:Name="searchBtn" Content="Search" 
                     HorizontalAlignment="Right" Margin="0,25,20,0" 
-                    VerticalAlignment="Top" Width="75" Click="searchBtn_Click"/>
+                    VerticalAlignment="Top" Width="75" Click="searchBtn_Click" IsDefault="True"/>
 
-            <ComboBox x:Name="searchTxtBox" 
+            <TextBox x:Name="searchTxtBox" 
                      Height="20" Margin="70,25,100,0"  
                      VerticalAlignment="Top" Width="auto"
-                      IsEditable="True"  />
+                      />
+            <ListBox x:Name="dropDownListBox" Margin="70,47,100,0" 
+                     VerticalAlignment="top" HorizontalAlignment="Center" 
+                     Width="321" Height="auto" IsEnabled="False"/>
+
 
             <Label x:Name="label" Content="Name:" 
                    HorizontalAlignment="Left" Margin="20,21,0,0" 
                    VerticalAlignment="Top" Height="30"/>
         </Grid>
-        
+
         <Grid x:Name="userGrid" Margin="0,25,0,0" Visibility="Hidden">
             <Grid.RowDefinitions>
                 <RowDefinition Height="150"/>
@@ -51,7 +53,7 @@
                 <Button x:Name="userImageBtn" Margin="15,0,0,0">
                     <Image x:Name="userPicture" Margin="15" Source="Resources/default.png" />
                 </Button>
-               
+
                 <Label Content="Click to Add Photo" 
                        HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="10"
                        />
@@ -78,7 +80,7 @@
                 <TextBox x:Name="addressTxtBox" Grid.ColumnSpan="2" Grid.Row="1" VerticalAlignment="Center" Margin="60,0,0,0" Height="36"/>
 
                 <Label Grid.Column="0" Grid.Row="2" Content="Age:" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="10"/>
-                <TextBox x:Name="ageTxtBox" Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" Margin="60,0,75,0"/>
+                <TextBox x:Name="ageTxtBox" Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" Margin="60,0,0,0" Width="18"/>
             </Grid>
 
             <!-- User interests-->
@@ -87,7 +89,7 @@
                 <TextBox x:Name="interestTxtBox" Margin="5,5,0,5" Height="70" TextWrapping="Wrap"/>
                 <Button x:Name="saveUser" VerticalAlignment="Bottom" HorizontalAlignment="Right" Content="Save" Width="45" Margin="8,0,0,0" FontSize="10" Click="saveUser_Click"/>
             </Grid>
-            
+
 
 
         </Grid>
