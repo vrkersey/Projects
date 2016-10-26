@@ -214,7 +214,6 @@ namespace PeopleSearchApp
         private void AddUsersMenuItem_Click(object sender, RoutedEventArgs e)
         {
             addSomeUsers();
-            addManyUsers();
         }
 
         // Adds 4 default users
