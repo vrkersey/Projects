@@ -1,18 +1,10 @@
 ﻿using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace PeopleSearchApp
 {
@@ -39,7 +31,8 @@ namespace PeopleSearchApp
 
             // adds an event handler for when text changes in the Combo Box
             searchTxtBox.AddHandler(System.Windows.Controls.Primitives.TextBoxBase.TextChangedEvent, new System.Windows.Controls.TextChangedEventHandler(textTyped));
-            
+
+            dropDownListBox.Visibility = Visibility.Hidden;
         }
 
         // Event Handler for when text is typed in the Combo Box
@@ -100,7 +93,8 @@ namespace PeopleSearchApp
             searchGrid.Visibility = Visibility.Hidden;
             userGrid.Visibility = Visibility.Visible;
 
-            if (sender.GetType() == typeof(MenuItem))// if the event sender was the add menu button we are adding instead of editing
+            // if the event sender was the add menu button we are adding instead of editing
+            if (sender.GetType() == typeof(MenuItem) || (sender.GetType() == typeof(ListBoxItem) && ((ListBoxItem)sender).Content.ToString() == "-Click to Add-"))
             {
                 fNameTxtBox.IsEnabled = true;
                 lNameTxtBox.IsEnabled = true;
@@ -134,7 +128,6 @@ namespace PeopleSearchApp
         // Finds a user that has the same name
         private void searchBtn_Click(object sender, RoutedEventArgs e)
         {
-            dropDownListBox.IsEnabled = false;
             User user = database.searchUser(searchTxtBox.Text);
             if (user == null)
                 MessageBox.Show("Unable to find a user by the name " + searchTxtBox.Text);
@@ -214,7 +207,6 @@ namespace PeopleSearchApp
         private void AddUsersMenuItem_Click(object sender, RoutedEventArgs e)
         {
             addSomeUsers();
-            addManyUsers();
         }
 
         // Adds 4 default users
@@ -232,7 +224,7 @@ namespace PeopleSearchApp
             u2.Interests = "Being Mysterious";
             database.addUser(u2);
 
-            User u3 = new User("Kimble", "Rod");
+            User u3 = new User("Rod", "Kimble");
             u3.Age = 19;
             u3.Address = "2020 State St";
             u3.Interests = "Partying, Stuntman";
