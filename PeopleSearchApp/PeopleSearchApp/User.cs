@@ -6,91 +6,49 @@ using System.Threading.Tasks;
 
 namespace PeopleSearchApp
 {
-    
     public class User
     {
-        private string fName;
-        private string lName;
-        private string address;
-        private int age;
-        private string interests;
-        private string pictureFilePath;
-
+        /// <summary>
+        /// Create a new user
+        /// </summary>
+        /// <param name="firstName">Users first name</param>
+        /// <param name="lastName">Users last name</param>
         public User(string firstName, string lastName)
         {
-            fName = firstName;
-            lName = lastName;
-            address = "";
-            age = 0;
-            interests = "";
-            pictureFilePath = "pack://application:,,,/PeopleSearchApp;component/Resources/default.png";
+            FirstName = firstName;
+            LastName = lastName;
+            Address = "";
+            Age = 0;
+            Interests = "";
+            PicFilename = "pack://application:,,,/PeopleSearchApp;component/Resources/default.png";
         }
 
-        public string Name
+
+        public string FirstName{ get; }
+        public string LastName { get; }
+        public string Name { get { return LastName + ", " + FirstName; }}
+        public string Address { get; set; }
+        public int Age { get; set; }
+        public string Interests { get; set; }
+        public string PicFilename { get; set; }
+
+        /// <summary>
+        /// Custom hashcode based on users name, address, and age
+        /// </summary>
+        /// <returns></returns>
+        public override int GetHashCode()
         {
-            get { return lName + ", " + fName; }
+            return this.Name.GetHashCode() + this.Address.GetHashCode() + this.Age.GetHashCode();
         }
 
-        public string FirstName
+        /// <summary>
+        /// Custom equals based on hashcode
+        /// </summary>
+        /// <param name="that"></param>
+        /// <returns></returns>
+        public override bool Equals(object that)
         {
-            get { return fName; }
+            return this.GetHashCode() == that.GetHashCode();
         }
-
-        public string LastName
-        {
-            get { return lName; }
-        }
-
-        public string Address
-        {
-            get
-            {
-                return address;
-            }
-            set
-            {
-                address = value;
-            }
-        }
-
-        public int Age
-        {
-            get
-            {
-                return age;
-            }
-
-            set
-            {
-                age = value;
-            }
-        }
-
-        public string Interests
-        {
-            get
-            {
-                return interests;
-            }
-
-            set
-            {
-                interests = value;
-            }
-        }
-
-        public string PicFilename
-        {
-            get
-            {
-                return pictureFilePath;
-            }
-
-            set
-            {
-                pictureFilePath = value;
-            }
-        }
-
     }
 }

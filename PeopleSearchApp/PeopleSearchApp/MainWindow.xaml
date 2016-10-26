@@ -15,7 +15,10 @@
                     <MenuItem x:Name="searchMenuItem" Header="_Search" IsEnabled="False" />
                     <MenuItem x:Name="closeMenuItem" Header="_Close"/>
                 </MenuItem>
-                <MenuItem Header="_Help"/>
+                <MenuItem Header="Application">
+                    <MenuItem x:Name="addUsersMenuItem" Header="Add Test Users"/>
+                    <MenuItem x:Name="aboutMenuItem" Header="Help"/>
+                </MenuItem>
             </Menu>
         </DockPanel>
 
@@ -30,7 +33,7 @@
                       />
             <ListBox x:Name="dropDownListBox" Margin="70,47,100,0" 
                      VerticalAlignment="top" HorizontalAlignment="Center" 
-                     Width="321" Height="auto" IsEnabled="False"/>
+                     Width="321" Height="auto" Visibility="Hidden"/>
 
 
             <Label x:Name="label" Content="Name:" 
@@ -87,7 +90,8 @@
             <Grid Grid.Row="1" Grid.ColumnSpan ="2" Margin="10">
                 <Label VerticalAlignment="Top" HorizontalAlignment="left" Content="Interests:" FontSize="10" Margin="5,0,0,0"/>
                 <TextBox x:Name="interestTxtBox" Margin="5,5,0,5" Height="70" TextWrapping="Wrap"/>
-                <Button x:Name="saveUser" VerticalAlignment="Bottom" HorizontalAlignment="Right" Content="Save" Width="45" Margin="8,0,0,0" FontSize="10" Click="saveUser_Click"/>
+                <Button x:Name="saveUser" VerticalAlignment="Bottom" HorizontalAlignment="Right" Content="Save" Width="45" Margin="8,0,50,0" FontSize="10" Click="saveUser_Click"/>
+                <Button x:Name="CancelUser" VerticalAlignment="Bottom" HorizontalAlignment="Right" Content="Cancel" Width="45" Margin="8,0,0,0" FontSize="10" Click="Switch2Search"/>
             </Grid>
 
 
