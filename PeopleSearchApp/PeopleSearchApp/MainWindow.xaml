@@ -21,7 +21,8 @@
                 </MenuItem>
             </Menu>
         </DockPanel>
-
+        
+        <!-- Search Grid -->
         <Grid x:Name="searchGrid" FocusManager.FocusedElement="{Binding ElementName=searchTxtBox}">
             <Button x:Name="searchBtn" Content="Search" 
                     HorizontalAlignment="Right" Margin="0,25,20,0" 
@@ -41,6 +42,7 @@
                    VerticalAlignment="Top" Height="30"/>
         </Grid>
 
+        <!-- User Grid -->
         <Grid x:Name="userGrid" Margin="0,25,0,0" Visibility="Hidden">
             <Grid.RowDefinitions>
                 <RowDefinition Height="150"/>
