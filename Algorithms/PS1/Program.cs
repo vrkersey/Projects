@@ -1,57 +1,46 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PS1
 {
     class Program
     {
-        public static List<string> words;
 
         static void Main(string[] args)
         {
-            words = sortwords(args.ToList());
-            //words = new List<string>();
-            //words.Add("tape");
-            //words.Add("rate");
-            //words.Add("seat");
-            //words.Add("pate");
-            //words.Add("east");
-            //words.Add("pest");
-
-            List<string> sorted_words = sortwords(words);
-
             HashSet<string> accept = new HashSet<string>();
             HashSet<string> reject = new HashSet<string>();
 
-            foreach (string el in sorted_words)
+            string s;
+            s = Console.ReadLine();
+            int n;
+
+            int.TryParse(s.Substring(0, s.IndexOf(" ")), out n);
+            //int.TryParse(s.Substring(s.IndexOf(" ") + 1), out k);
+            
+            for (int i = 0; i < n; i++)
             {
-                if (!reject.Contains(el))
+                s = sortword(Console.ReadLine());
+                if (!reject.Contains(s))
                 {
-                    if (accept.Contains(el))
+                    if (accept.Contains(s))
                     {
-                        accept.Remove(el);
-                        reject.Add(el);
+                        accept.Remove(s);
+                        reject.Add(s);
                     }
                     else
-                        accept.Add(el);
+                        accept.Add(s);
                 }
             }
+
             Console.WriteLine(accept.Count);
             Console.Read();
         }
 
-        private static List<string> sortwords(List<string> list)
+        private static string sortword(string word)
         {
-            List<string> dict = new List<string>();
-            foreach (string word in list)
-            {
-                dict.Add(String.Concat(word.OrderBy(c => c)));
-            }
-
-            return dict;
+            return String.Concat(word.OrderBy(c => c));
         }
     }
 }
