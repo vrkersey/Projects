@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 
 namespace PS2
 {
@@ -11,7 +12,7 @@ namespace PS2
             int n = int.Parse(s[0]);
             int k = int.Parse(s[1]);
 
-            HashSet<int> BinaryTrees = new HashSet<int>();
+            HashSet<string> BinaryTrees = new HashSet<string>();
 
             for (int i = 0; i < n; i++)
             {
@@ -21,7 +22,9 @@ namespace PS2
                 {
                     t.addNode(int.Parse(tokens[j]));
                 }
-                BinaryTrees.Add(t.GetHashCode());
+                BinaryTrees.Add(t.ToString());
+                Console.WriteLine(t.ToString());
+                Console.WriteLine(BinaryTrees.Count);
             }
             Console.WriteLine(BinaryTrees.Count);
             Console.Read();
@@ -31,9 +34,11 @@ namespace PS2
         {
             int[] tree;
             int shape;
+            List<int> nodes;
 
             public BTree(int size)
             {
+                nodes = new List<int>();
                 int tsize = (int)Math.Pow(2, size) - 1;
                 tree = new int[tsize];
             }
@@ -50,6 +55,7 @@ namespace PS2
                 {
                     tree[i] = number;
                     shape = shape + (int)Math.Pow(2, i);
+                    nodes.Add(i);
                 }
                 else if (number > tree[i])
                 {
@@ -63,9 +69,14 @@ namespace PS2
                 }
             }
 
-            public override int GetHashCode()
+            public override string ToString()
             {
-                return shape;
+                //return shape;
+                nodes.Sort();
+                StringBuilder sb = new StringBuilder();
+                foreach (int el in nodes)
+                    sb.Append(el);
+                return sb.ToString();
             }
 
         }
