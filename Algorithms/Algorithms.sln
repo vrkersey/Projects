@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PS1", "PS1\PS1.csproj", "{4
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PS2", "PS2\PS2.csproj", "{33E432F0-8FA0-427E-9B5D-D8BCFF4C89D1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PS3", "PS3\PS3.csproj", "{EDA8D1CD-D379-42EE-AA53-817B316CAA2D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "tester", "tester\tester.csproj", "{6EA18847-03F1-472D-B65B-88D8BF83F2F0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{33E432F0-8FA0-427E-9B5D-D8BCFF4C89D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{33E432F0-8FA0-427E-9B5D-D8BCFF4C89D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{33E432F0-8FA0-427E-9B5D-D8BCFF4C89D1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EDA8D1CD-D379-42EE-AA53-817B316CAA2D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EDA8D1CD-D379-42EE-AA53-817B316CAA2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EDA8D1CD-D379-42EE-AA53-817B316CAA2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EDA8D1CD-D379-42EE-AA53-817B316CAA2D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6EA18847-03F1-472D-B65B-88D8BF83F2F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6EA18847-03F1-472D-B65B-88D8BF83F2F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6EA18847-03F1-472D-B65B-88D8BF83F2F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6EA18847-03F1-472D-B65B-88D8BF83F2F0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
