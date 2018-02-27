@@ -10,52 +10,88 @@ namespace tester
     {
         static void Main(string[] args)
         {
+            DisjointSet s = new DisjointSet(10);
+            int a = 0;
+            int b = 1;
+            int c = 2;
+            int d = 3;
+            int e = 4;
+            int f = 5;
+            int g = 6;
+            int h = 7;
+            int i = 8;
+            int j = 9;
+            s.union(a, b);
+            s.union(c, d);
+            s.union(a, d);
+            s.union(e, f);
+            s.union(g, h);
+            s.union(f, h);
+            s.union(a, e);
+            s.union(i, j);
+            s.union(a, j);
 
+            Console.WriteLine("a-" + s.parent[a]);
+            Console.WriteLine("b-" + s.parent[b]);
+            Console.WriteLine("c-" + s.parent[c]);
+            Console.WriteLine("d-" + s.parent[d]);
+            Console.WriteLine("e-" + s.parent[e]);
+            Console.WriteLine("f-" + s.parent[f]);
+            Console.WriteLine("g-" + s.parent[g]);
+            Console.WriteLine("h-" + s.parent[h]);
+            Console.WriteLine("i-" + s.parent[i]);
+            Console.WriteLine("j-" + s.parent[j]);
+            //Console.WriteLine((int)a);
+            Console.Read();
         }
-
-        static int dec2bin(string x)
+        public class DisjointSet
         {
-            int n = x.Length;
-            if (n == 1)
-                return binary(int.Parse(x));
-            else
-            {
-                return dec2bin(x.Substring(0, n / 2)) * pow2bin(n / 2) + dec2bin(x.Substring(n / 2));
-            }
-            //return 0;
-        }
+            public int[] parent;
+            int[] rank;
 
-        static int binary(int x)
-        {
-            switch (x)
+            public DisjointSet(int n)
             {
-                case 0:
-                    return 0000;
-                case 1:
-                    return 0001;
-                case 2:
-                    return 0010;
-                case 3:
-                    return 0011;
-                case 4:
-                    return 0100;
-                case 5:
-                    return 0101;
-                case 6:
-                    return 0110;
-                case 7:
-                    return 0111;
-                case 8:
-                    return 1000;
-                case 9:
-                    return 1001;
+                parent = new int[n];
+                rank = new int[n];
+                for (int i = 0; i < n; i++)
+                {
+                    parent[i] = i;
+                    rank[i] = 0;
+                }
             }
-            return 0;
+
+            public int find(int x)
+            {
+                if (x != parent[x])
+                    parent[x] = find(parent[x]);
+                return parent[x];
+            }
+
+            public void union(int x, int y)
+            {
+                int rx = find(x);
+                int ry = find(y);
+
+                if (rx == ry)
+                    return;
+                else if (rank[rx] > rank[ry])
+                    parent[ry] = rx;
+                else if (rank[rx] < rank[ry])
+                    parent[rx] = ry;
+                else
+                {
+                    if (rx > ry)
+                    {
+                        parent[ry] = rx;
+                        rank[rx] = rank[rx] + 1;
+                    }
+                    else
+                    {
+                        parent[rx] = ry;
+                        rank[ry] = rank[ry] + 1;
+                    }
+                }
+            }
         }
-//        function dec2bin(x)
-//        if n = 1: return binary[x]
-//        else:
-//        split x into two decimal numbers xL, xR with n=2 digits each
-//        return ???
     }
 }
